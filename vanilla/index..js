@@ -1,14 +1,13 @@
-import firebase from "firebase/app";
 import './style.css';
-import javascriptLogo from './javascript.svg'
-import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore"; 
+import firebase from "firebase";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD9m74Ngn7FI82IM2YdXPGljvGbQSMvLUY",
   authDomain: "icebase-31674.firebaseapp.com",
@@ -20,11 +19,4 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-let firebaseRef = firebase.database().ref('email')
-document.querySelector('#submit').addEventListener('click', () => { 
-  const email = document.getElementById('email').value;
-  firebaseRef.push(email);
-})
-
-export default module;
+const app = initializeApp(firebaseConfig);
