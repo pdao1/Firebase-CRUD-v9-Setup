@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Icebase</title>
+    <title>Phung's WebApp</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -14,23 +14,23 @@
   <nav class="z-depth-50 grey lighten-4" style="height: 100px">
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo">
-        <img src="/assets/cat2.png" style="width: 70px; height: 70px; border-radius: 50%; margin-top: 10px;">
+        <img src="/assets/tortie.png" style="width: 70px; height: 70px; border-radius: 50%; margin-top: 10px;">
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="logged-in">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+            <a href="#" class="modal-trigger waves-light waves-ripple btn" data-target="modal-account">Account</a>
           </li>
           <li class="logged-in">
-            <a href="#" class="grey-text" id="logout">Logout</a>
+            <a href="#" class="modal-trigger waves-light waves-orange btn" id="logout">Logout</a>
           </li>
           <li class="logged-in">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-create">Create Guide</a>
+            <a href="#" class="modal-trigger waves-light waves-ripple btn" data-target="modal-create">Create Guide</a>
           </li>
           <li class="logged-out">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+            <a href="#" class="modal-trigger waves-light waves-ripple btn" data-target="modal-login">Login</a>
           </li>
           <li class="logged-out">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+            <a href="#" class="modal-trigger waves-light waves-ripple btn" data-target="modal-signup">Sign up</a>
           </li>
         </span>
       </ul>
@@ -44,11 +44,9 @@
   
     <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
     <script type="module">
+      
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js'
-
         import { getDatabase } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js'
-    
-        // Add Firebase products that you want to use
         import { getAuth } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js'
         import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js'
         
@@ -62,11 +60,13 @@
         appId: "1:551544382823:web:1a5c13dee46d1ad3b13bc2"
       };
 
-       
+       // Initialize Firebase
       const app = firebase.initializeApp(firebaseConfig);
-      const db = app.database();
+      const db = firebase.database();
+      // const firestore = firebase.firestore();
       const auth = app.auth();
-        // Initialize Firebas
+      
+      // db.settings({ timestampsInSnapshot: true })
       document.querySelector('#submit').addEventListener('click', () => { 
         let name = document.getElementById('name').value;
         let email = document.getElementById('email').value;
@@ -104,15 +104,39 @@
         })
       
 
-      document.querySelector('#delete').addEventListener('click', () => { 
+        document.querySelector('#delete').addEventListener('click', () => { 
         let username = document.getElementById('username').value;
          firebase.database().ref('user-info/' + username).remove()
         })
 
-      </script>
-        <main>
+        // Sign up
 
-          <!-- SIGN UP MODAL -->
+        const signUpForm = document.querySelector('#signup-form');
+
+        // sign up, takes submit and turns it into an object event. 
+        signUpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // assign values
+        const email = signUpForm['signup-email'].value;
+        const password = signUpForm['signup-password'].value;
+
+        // creates account
+        auth.createUserWithEmailAndPassword(email, password).then(cred=>{
+          console.log(cred.user);
+
+          // close the signup modal & reset form
+          const modal = document.querySelector('#modal-signup');
+          M.Modal.getInstance(modal).close();
+          signUpForm.reset();
+          })
+        });
+ 
+
+      </script>
+       
+  <!-- SIGN UP MODAL -->
+<main>       
   <div id="modal-signup" class="modal">
     <div class="modal-content">
       <h4>Sign up</h4><br />
@@ -196,7 +220,7 @@
     </ul>
   </div>
 
-          <div class="container" style="position: absolute; top: 25%; left: 25%; width: 50%">
+          <div class="container" style="position: absolute; bottom: 25%; left: 25%; width: 50%">
             <div class="row my-4">
             <input type="text" placeholder="name" class="text-center mx-3 border-1 rounded-md drop-shadow-md" id="name">
             <input type="text" placeholder="username" class="text-center mx-3 border-1 rounded-md drop-shadow-md" id="username">
@@ -212,5 +236,8 @@
           </main>
     </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/global.js"></script>
+  <script src="/js/auth.js"></script>
+
   </body>
 </html>
