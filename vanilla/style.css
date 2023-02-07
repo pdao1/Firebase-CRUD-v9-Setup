@@ -4,9 +4,9 @@
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #242424;
+  background-color: #d8d8d8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,15 +14,19 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-input, textarea {
+input, textarea, .input-field {
   color: #000;
+  background-color: #fff!important;
+}
+input, #login-email {
+  background-color: #fff;
 }
 .logged-in {
   display: none;
 }
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #6067eb;
   text-decoration: inherit;
 }
 a:hover {
@@ -54,7 +58,7 @@ h1 {
   will-change: filter;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em #f7f8f9aa);
 }
 .logo.vanilla:hover {
   filter: drop-shadow(0 0 2em #f7df1eaa);
@@ -65,7 +69,7 @@ h1 {
 }
 
 .read-the-docs {
-  color: #888;
+  color: rgb(22, 22, 22);
 }
 
 button {
@@ -80,23 +84,23 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #fe08c5;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     color: #213547;
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #ff74ca;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
   }
 }
 #nav-mobile {

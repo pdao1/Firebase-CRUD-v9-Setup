@@ -1,9 +1,18 @@
 const snippetList = document.querySelector('.snippets')
 const loggedOutLinks = document.querySelectorAll('.logged-out')
 const loggedInLinks = document.querySelectorAll('.logged-in')
-
+const accountDetails = document.querySelector('.account-details')
 const setupUI = (user) => {
   if (user) {
+    fs.collection('Users').doc(user.uid).get().then(doc => {
+  
+    const html = `
+    <div class='info'>Logged in as ${user.email}</div>
+    <div>${doc.data().userID}</div>
+    `;
+    accountDetails.innerHTML = html;
+  })
+
     loggedInLinks.forEach(item => item.style.display = 'list-item');
     loggedOutLinks.forEach(item => item.style.display = 'none');
   } else {
@@ -15,7 +24,6 @@ const setupUI = (user) => {
 
 const snippets = (data) => {
 if (data.length) {
-
 
   let html = '';
   data.forEach(doc =>{
