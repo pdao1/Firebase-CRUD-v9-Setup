@@ -96,12 +96,13 @@ auth.useDeviceLanguage();
 
       // logging in
       auth.signInWithEmailAndPassword(email, password).then((cred) => {
-
-          const modal = document.querySelector('#modal-login');
-          M.Modal.getInstance(modal).close();
+          // const modal = document.querySelector('#modal-login');
+          // M.Modal.getInstance(modal).close();
           loginForm.reset();
-      });
-  });
+      })
+  }).then(() => {
+   
+  })
 
  fs.collection('Snippets').get().then(snapshot =>{
     snippets(snapshot.docs)

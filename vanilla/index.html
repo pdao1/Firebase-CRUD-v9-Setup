@@ -7,6 +7,8 @@
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Include stylesheet -->
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   </head>
@@ -18,29 +20,7 @@
     <script type="module" src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
  
   <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0&appId=3436696049951509&autoLogAppEvents=1" nonce="oKCOgYXa"></script>
-    
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '{3436696049951509}',
-      cookie     : true,
-      xfbml      : true,
-      version    : '{v15.0}'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+ 
      <!-- NAVBAR -->
   <nav class="z-depth-50 grey lighten-4" style="height: 100px;">
     <div class="nav-wrapper container">
